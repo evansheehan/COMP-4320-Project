@@ -3,9 +3,10 @@
 //Professor Alvin Lim
 //Group 2
 
-/*#include <sys/socket.h>
+#include <printf.h>
+#include <sys/socket.h>
 #include <netinet/in.h>
-#include <arpa/inet.h>*/
+#include <arpa/inet.h>
 
 int main(void)
 {
