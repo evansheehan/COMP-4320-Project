@@ -6,6 +6,6 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(.)
 
 add_executable(Project_1
-        project1.c
+        client.c
         project1.pdf
         readme.md)
