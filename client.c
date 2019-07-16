@@ -25,12 +25,8 @@ int main(void)
     int clientSock = socket(AF_INET, SOCK_DGRAM, 0);
     bind(clientSock, (struct sockaddr*)&client, sizeof(client));
 
+    FILE* file = fopen("testFile.txt", "r");
+
     close(clientSock);
     return 0;
 }
-
-//Internet address structure
-struct int_addr
-{
-    unsigned int s_addr;
-};
