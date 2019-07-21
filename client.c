@@ -17,6 +17,7 @@
 #include <unistd.h>
 
 #define fileName "testFile.txt"
+#define PACKET_SIZE 128
 
 int clientSock;
 struct sockaddr_in client;
@@ -26,11 +27,14 @@ int numPackets;
 
 
 int readFile();
+int segmentAndSend();
+int computeChecksum();
+int gremlinFunc();
 
 int main(void) {
 
     readFile();
-
+    segmentAndSend();
 
 
 
@@ -87,3 +91,36 @@ int readFile() {
 
     return 0;
 }
+
+int segmentAndSend(){
+
+    //Determine the number of packets that will need to be sent to the server
+    numPackets = (int)numBytes/PACKET_SIZE;
+
+    /*
+     * If the number of packets isn't evenly divisible by packet size,
+     * we need to send one extra packet that's partially filled with NULL values.
+     */
+    if (numBytes%PACKET_SIZE > 0) {numPackets++; int fillNull = 1;}
+    printf("\n\n\n%d", numPackets);
+
+    //Main loop for creating and sending segments/packets
+    for (int i = 0; i < numPackets; i++) {
+
+
+        computeChecksum();
+        gremlinFunc();
+    }
+
+    return 0;
+}
+
+int computeChecksum() {
+
+    return 0;
+}
+
+int gremlinFunc() {
+
+}
+
