@@ -78,7 +78,7 @@ int readFile() {
     fseek(file, 0L, SEEK_SET);
 
     //Allocate memory for the buffer to hold file text
-    buffer = (char*)calloc(numBytes, sizeof(char));
+    buffer = (char*)malloc(numBytes);
     if (buffer == NULL) {return 0;} //Memory error checking
 
     //Put file contents into created character array buffer
@@ -105,10 +105,16 @@ int segmentAndSend(){
     printf("\n\n\n%d", numPackets);
 
     //Main loop for creating and sending segments/packets
+    int altBit;
     for (int i = 0; i < numPackets; i++) {
 
+        if (i % 2 == 1) {altBit = 1;}
+        else {altBit = 0;}
 
         computeChecksum();
+
+        char* currPacket = (char*)malloc(PACKET_SIZE);
+
         gremlinFunc();
     }
 
