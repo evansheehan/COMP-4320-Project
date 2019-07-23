@@ -15,73 +15,42 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <unistd.h>
-#include <strings.h>
 
 #define fileName "testFile.txt"
-
-#define SERV_PORT 0000
 #define PACKET_SIZE 128
 
 int clientSock;
-struct sockaddr_in client;
+struct sockaddr_in server;
 char* buffer;
 long numBytes;
 int numPackets;
+int currentBufferPos;
 
 
 int readFile();
 int segmentAndSend();
-int computeChecksum();
+unsigned char calculateChecksum();
 int gremlinFunc();
 
-int main(int argc, char **argv) {
+int main(void) {
 
-    /*
-     * 'Bare minimum UDP Client' from slides
-     */
-    int sd;
-    struct sockaddr_in server;
-    struct hostent* hp;
-
-    sd = socket(AF_INET, SOCK_DGRAM, 0);
-
+    
     server.sin_family = AF_INET;
-    server.sin_port = htons(12345);
-    hp = gethostbyname(argv[1]);
-    bcopy(hp->h_addr, &(server.sin_addr), hp->h_length);
+    server.sin_addr.s_addr = htonl(INADDR_ANY);
+    server.sin_port = htons(12345); 
 
-    for(;;) {
-        sendto(sd, 'Hello!', 2, 0, (struct sockaddr *) &server, sizeof(server));
-        sleep(2);
-    }
-
-    close(sd);
-    /*
-     * End 'Bare minimum UDP Client' from slides
-     */
+    int clientSock = socket(AF_INET, SOCK_DGRAM, 0);
+    bind(clientSock, (struct sockaddr*)&server, sizeof(server));
 
 
     readFile();
-    segmentAndSend();
 
 
-
-
-
-    /*client.sin_family = AF_INET;
-    client.sin_addr.s_addr = htonl(INADDR_ANY);
-    client.sin_port = htons(12345); //Should this be the FTP port?
-
-    struct hostent* server = gethostbyname("NULL");
-
-    int clientSock = socket(AF_INET, SOCK_DGRAM, 0);
-    bind(clientSock, (struct sockaddr*)&client, sizeof(client));
-
-    close(clientSock);*/
+    close(clientSock);
     return 0;
 }
 
-int clientProcess() {
+int serverProcess() {
 
     return 0;
 }
@@ -114,16 +83,20 @@ int readFile() {
     fclose(file);
     printf("The file contents are: \n\n%s", buffer);
 
+    segmentAndSend(buffer);
+
     //Free memory set for buffer, do this after file is successfully sent to server
     free(buffer);
 
     return 0;
 }
 
-int segmentAndSend(){
+int segmentAndSend(char* mainBuffer){
 
     //Determine the number of packets that will need to be sent to the server
-    numPackets = (int)numBytes/PACKET_SIZE;
+    numPackets = (int)numBytes/(PACKET_SIZE - 3); //minus 3 currently for header
+    currentBufferPos = 0;
+    char *voidPacket = [128];
 
     /*
      * If the number of packets isn't evenly divisible by packet size,
@@ -134,28 +107,53 @@ int segmentAndSend(){
 
     //Main loop for creating and sending segments/packets
     int altBit;
-    for (int i = 0; i < numPackets; i++) {
 
+    
+
+    for (int i = 0; i < numPackets; i++) {
         if (i % 2 == 1) {altBit = 1;}
         else {altBit = 0;}
 
-        computeChecksum();
-
+         //For now the packet-header structure will be 1 byte Ack, 1 Byte Seq, 
         char* currPacket = (char*)malloc(PACKET_SIZE);
+        currPacket[0] = "0"; //just init value for checksum
+        currPacket[1] = "0"; //just init value for Ack/Nck
+        currPacket[2] = altBit;
+        for (int i = 3; i < 128; i++) {
+            if (mainBuffer[currentBufferPos] == "\0") currPacket[i] = "\0";
+            else {
+                currPacket[i] = mainBuffer[currentBufferPos++];
+            }          
+        }
+        //calculate checksum and gremlin in this bish
+        currPacket[0] = calculateChecksum(currPacket, 128);
+        gremlinFunc(currPacket);
 
+        sendto(clientSock, currPacket, 128, 0, (struct sockaddr *) &server, sizeof(server));
+        printf("SENT BOY");
+        recv(clientSock, voidPacket, sizeof(voidPacket), 0);
 
-        gremlinFunc();
+        
+
+        
     }
 
     return 0;
 }
 
-int computeChecksum() {
+//We are going to keep it simple
+unsigned char calculateChecksum(unsigned char *sourcePacket, unsigned char length)
+ {
+     unsigned char count;
+     unsigned int checkSum = 0;
+     
+     for (count = 1; count < length; count++)
+         checkSum = checkSum + sourcePacket[count];
+     checkSum = -checkSum;
+     return (checkSum & 0xFF);
+ }
 
-    return 0;
-}
-
-int gremlinFunc() {
+int gremlinFunc(char *sourcePacket) {
 
 }
 
