@@ -15,8 +15,11 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <unistd.h>
+#include <strings.h>
 
 #define fileName "testFile.txt"
+
+#define SERV_PORT 0000
 #define PACKET_SIZE 128
 
 int clientSock;
@@ -31,7 +34,32 @@ int segmentAndSend();
 int computeChecksum();
 int gremlinFunc();
 
-int main(void) {
+int main(int argc, char **argv) {
+
+    /*
+     * 'Bare minimum UDP Client' from slides
+     */
+    int sd;
+    struct sockaddr_in server;
+    struct hostent* hp;
+
+    sd = socket(AF_INET, SOCK_DGRAM, 0);
+
+    server.sin_family = AF_INET;
+    server.sin_port = htons(12345);
+    hp = gethostbyname(argv[1]);
+    bcopy(hp->h_addr, &(server.sin_addr), hp->h_length);
+
+    for(;;) {
+        sendto(sd, 'Hello!', 2, 0, (struct sockaddr *) &server, sizeof(server));
+        sleep(2);
+    }
+
+    close(sd);
+    /*
+     * End 'Bare minimum UDP Client' from slides
+     */
+
 
     readFile();
     segmentAndSend();
@@ -114,6 +142,7 @@ int segmentAndSend(){
         computeChecksum();
 
         char* currPacket = (char*)malloc(PACKET_SIZE);
+
 
         gremlinFunc();
     }
