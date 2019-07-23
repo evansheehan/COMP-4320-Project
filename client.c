@@ -15,6 +15,7 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <unistd.h>
+#include <string.h>
 
 #define fileName "testFile.txt"
 #define PACKET_SIZE 128
@@ -29,7 +30,7 @@ int currentBufferPos;
 
 int readFile();
 int segmentAndSend();
-unsigned char calculateChecksum();
+unsigned char calculateChecksum(unsigned char *sourcePacket, unsigned char length);
 int gremlinFunc();
 
 int main(void) {
@@ -91,12 +92,12 @@ int readFile() {
     return 0;
 }
 
-int segmentAndSend(char* mainBuffer){
+int segmentAndSend(char* mainBuffer[]){
 
     //Determine the number of packets that will need to be sent to the server
     numPackets = (int)numBytes/(PACKET_SIZE - 3); //minus 3 currently for header
     currentBufferPos = 0;
-    char *voidPacket = [128];
+    char *voidPacket[128];
 
     /*
      * If the number of packets isn't evenly divisible by packet size,
@@ -106,21 +107,23 @@ int segmentAndSend(char* mainBuffer){
     printf("\n\n\n%d", numPackets);
 
     //Main loop for creating and sending segments/packets
-    int altBit;
+    char* altBit;
 
     
 
     for (int i = 0; i < numPackets; i++) {
-        if (i % 2 == 1) {altBit = 1;}
-        else {altBit = 0;}
+        if (i % 2 == 1) {altBit = "1";}
+        else {altBit = "0";}
 
          //For now the packet-header structure will be 1 byte Ack, 1 Byte Seq, 
-        char* currPacket = (char*)malloc(PACKET_SIZE);
+        char* currPacket[PACKET_SIZE/ sizeof(char)];
         currPacket[0] = "0"; //just init value for checksum
         currPacket[1] = "0"; //just init value for Ack/Nck
         currPacket[2] = altBit;
         for (int i = 3; i < 128; i++) {
-            if (mainBuffer[currentBufferPos] == "\0") currPacket[i] = "\0";
+            if (strcmp(mainBuffer[currentBufferPos], "\0") == 1) {
+                currPacket[i] = "\0";
+            }
             else {
                 currPacket[i] = mainBuffer[currentBufferPos++];
             }          
