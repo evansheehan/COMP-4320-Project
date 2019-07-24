@@ -26,6 +26,10 @@ char* buffer;
 long numBytes;
 int numPackets;
 int currentBufferPos;
+int sockfd;
+struct sockaddr_in serverAddr;
+
+socklen_t addr_size;
 
 
 int readFile();
@@ -36,18 +40,21 @@ int gremlinFunc();
 int main(void) {
     
     
-    server.sin_family = AF_INET;
-    server.sin_addr.s_addr = inet_addr("127.0.0.1");
-    server.sin_port = htons(12345); 
+  char buffer[1024];
 
-    int clientSock = socket(AF_INET, SOCK_DGRAM, 0);
-    bind(clientSock, (struct sockaddr*)&server, sizeof(server));
+  sockfd = socket(PF_INET, SOCK_DGRAM, 0);
+  memset(&serverAddr, '\0', sizeof(serverAddr));
+
+  serverAddr.sin_family = AF_INET;
+  serverAddr.sin_port = htons(5566);
+  serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+
+  strcpy(buffer, "Hello Server\n");
+  sendto(sockfd, buffer, 1024, 0, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
+  printf("[+]Data Send: %s", buffer);
 
     
-    struct timeval tv;
-    tv.tv_sec = 10;
-    tv.tv_usec = 0;
-    setsockopt(clientSock, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
+   
 
 
     readFile();
@@ -139,8 +146,8 @@ int segmentAndSend(char* mainBuffer){
         //calculate checksum and gremlin in this bish
         currPacket[0] = calculateChecksum(currPacket, 128);
         gremlinFunc(currPacket);
-
-        sendto(clientSock, currPacket, 128, 0, (struct sockaddr *) &server, sizeof(server));
+        sendto(sockfd, currPacket, 1024, 0, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
+        sendto(clientSock, "hello!", 128, 0, (struct sockaddr *)&server, sizeof(server));
         printf("SENT BOY");
         
         recv(clientSock, voidPacket, sizeof(voidPacket), 0);

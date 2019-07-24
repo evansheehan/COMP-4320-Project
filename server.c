@@ -14,38 +14,29 @@
 
 #define fileName "testFile.txt"
 
-#define SERV_PORT 0000
 #define PACKET_SIZE 128
 
 int main(void) {
+  int sockfd;
+  struct sockaddr_in si_me, si_other;
+  char buffer[1024];
+  socklen_t addr_size;
 
-    /*
-     * 'Bare minimum UDP server' from slides
-     */
-    int n, sd;
-    struct sockaddr_in server;
-    char buf[128];
+  sockfd = socket(AF_INET, SOCK_DGRAM, 0);
 
-    server.sin_family = AF_INET;
-    server.sin_addr.s_addr = inet_addr("127.0.0.1");
-    server.sin_port = htons(12346);
+  memset(&si_me, '\0', sizeof(si_me));
+  si_me.sin_family = AF_INET;
+  si_me.sin_port = htons(5566);
+  si_me.sin_addr.s_addr = inet_addr("127.0.0.1");
 
-    sd = socket(AF_INET, SOCK_DGRAM, 0);
-
-    bind (sd, (struct sockaddr*)& server, sizeof(server));
-    printf("initialiazed");
-   /* for (;;) {
-        n = recv(sd, buf, sizeof(buf), 0);
-        buf[n] = '\0';
-        printf("Received: %s\n", buf);
-        buf[1] = '1';
-        sendto(sd, buf, sizeof(buf), 0, (struct sockaddr *) &server, sizeof(server));
-    }*/
-    recvfrom(sd, buf, 128, 0, (struct sockaddr*)& server, sizeof(server));
-    close(sd);
-    /*
-     * End 'Bare minimum UDP server' from slides
-     */
+  bind(sockfd, (struct sockaddr*)&si_me, sizeof(si_me));
+  addr_size = sizeof(si_other);
+  for (;;) {
+    recvfrom(sockfd, buffer, 1024, 0, (struct sockaddr*)& si_other, &addr_size);
+    printf("[+]Data Received: %s", buffer);
+  }
+ 
+    
 
     return 0;
 }
