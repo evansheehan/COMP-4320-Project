@@ -24,21 +24,24 @@ int main(void) {
      */
     int n, sd;
     struct sockaddr_in server;
-    char buf[512];
+    char buf[128];
 
     server.sin_family = AF_INET;
-    server.sin_addr.s_addr = htonl(INADDR_ANY);
-    server.sin_port = htons(12345);
+    server.sin_addr.s_addr = inet_addr("127.0.0.1");
+    server.sin_port = htons(12346);
 
     sd = socket(AF_INET, SOCK_DGRAM, 0);
 
-    bind (sd, (structu sockaddr*)& server, sizeof(server));
-
-    for (;;) {
+    bind (sd, (struct sockaddr*)& server, sizeof(server));
+    printf("initialiazed");
+   /* for (;;) {
         n = recv(sd, buf, sizeof(buf), 0);
         buf[n] = '\0';
-        printf('Received: %s\n', buf);
-    }
+        printf("Received: %s\n", buf);
+        buf[1] = '1';
+        sendto(sd, buf, sizeof(buf), 0, (struct sockaddr *) &server, sizeof(server));
+    }*/
+    recvfrom(sd, buf, 128, 0, (struct sockaddr*)& server, sizeof(server));
     close(sd);
     /*
      * End 'Bare minimum UDP server' from slides

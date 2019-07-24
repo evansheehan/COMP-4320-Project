@@ -30,18 +30,24 @@ int currentBufferPos;
 
 int readFile();
 int segmentAndSend();
-unsigned char calculateChecksum(unsigned char *sourcePacket, unsigned char length);
+unsigned char calculateChecksum(char sourcePacket[], unsigned char length);
 int gremlinFunc();
 
 int main(void) {
-
+    
     
     server.sin_family = AF_INET;
-    server.sin_addr.s_addr = htonl(INADDR_ANY);
+    server.sin_addr.s_addr = inet_addr("127.0.0.1");
     server.sin_port = htons(12345); 
 
     int clientSock = socket(AF_INET, SOCK_DGRAM, 0);
     bind(clientSock, (struct sockaddr*)&server, sizeof(server));
+
+    
+    struct timeval tv;
+    tv.tv_sec = 10;
+    tv.tv_usec = 0;
+    setsockopt(clientSock, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
 
 
     readFile();
@@ -63,6 +69,7 @@ int readFile() {
 
     //Check if file is successfully created
     if (file == NULL) {
+        
         printf("Couldn't find specified file...Closing program");
         return 0;
     }
@@ -92,12 +99,12 @@ int readFile() {
     return 0;
 }
 
-int segmentAndSend(char* mainBuffer[]){
+int segmentAndSend(char* mainBuffer){
 
     //Determine the number of packets that will need to be sent to the server
     numPackets = (int)numBytes/(PACKET_SIZE - 3); //minus 3 currently for header
     currentBufferPos = 0;
-    char *voidPacket[128];
+    char voidPacket[128];
 
     /*
      * If the number of packets isn't evenly divisible by packet size,
@@ -107,34 +114,37 @@ int segmentAndSend(char* mainBuffer[]){
     printf("\n\n\n%d", numPackets);
 
     //Main loop for creating and sending segments/packets
-    char* altBit;
+    char altBit;
 
     
 
     for (int i = 0; i < numPackets; i++) {
-        if (i % 2 == 1) {altBit = "1";}
-        else {altBit = "0";}
+        if (i % 2 == 1) {altBit = '1';}
+        else {altBit = '0';}
 
          //For now the packet-header structure will be 1 byte Ack, 1 Byte Seq, 
-        char* currPacket[PACKET_SIZE/ sizeof(char)];
-        currPacket[0] = "0"; //just init value for checksum
-        currPacket[1] = "0"; //just init value for Ack/Nck
+        char currPacket[PACKET_SIZE/ sizeof(char)];
+        currPacket[0] = '0'; //just init value for checksum
+        currPacket[1] = '0'; //just init value for Ack/Nck
         currPacket[2] = altBit;
         for (int i = 3; i < 128; i++) {
-            if (strcmp(mainBuffer[currentBufferPos], "\0") == 1) {
-                currPacket[i] = "\0";
+            if (mainBuffer[currentBufferPos] == '\0') {
+                currPacket[i] = '\0';
             }
             else {
-                currPacket[i] = mainBuffer[currentBufferPos++];
+                currPacket[i] = (char)mainBuffer[currentBufferPos++];
             }          
         }
+       
         //calculate checksum and gremlin in this bish
         currPacket[0] = calculateChecksum(currPacket, 128);
         gremlinFunc(currPacket);
 
         sendto(clientSock, currPacket, 128, 0, (struct sockaddr *) &server, sizeof(server));
         printf("SENT BOY");
+        
         recv(clientSock, voidPacket, sizeof(voidPacket), 0);
+        printf("%s", voidPacket);
 
         
 
@@ -145,18 +155,22 @@ int segmentAndSend(char* mainBuffer[]){
 }
 
 //We are going to keep it simple
-unsigned char calculateChecksum(unsigned char *sourcePacket, unsigned char length)
+unsigned char calculateChecksum(char sourcePacket[], unsigned char length)
  {
      unsigned char count;
      unsigned int checkSum = 0;
      
      for (count = 1; count < length; count++)
-         checkSum = checkSum + sourcePacket[count];
+         checkSum += sourcePacket[count];
      checkSum = -checkSum;
      return (checkSum & 0xFF);
  }
 
-int gremlinFunc(char *sourcePacket) {
+int promptGremSettings() {
+    return 0;
+}
 
+int gremlinFunc(char *sourcePacket) {
+    return 0;
 }
 
