@@ -35,8 +35,8 @@ int main(void) {
     recvfrom(sockfd, buffer, 1024, 0, (struct sockaddr*)& si_other, &addr_size);
     printf("[+]Data Received: %s", buffer);
   }
- 
-    
+
+
 
     return 0;
 }

@@ -37,8 +37,14 @@ int segmentAndSend();
 unsigned char calculateChecksum(char sourcePacket[], unsigned char length);
 int gremlinFunc();
 
-int main(void) {
-    
+int main(int argc, char** argv) {
+
+    srand(time(NULL))
+
+    dmgPktProb = atoi(argv[1]);
+    lostPktProb = atoi(argv[2]);
+
+    printf("First two arguments you type:\t%d\t%d\n\n\n", dmgPktProb, lostPktProb);
     
   char buffer[1024];
 
@@ -53,8 +59,8 @@ int main(void) {
   sendto(sockfd, buffer, 1024, 0, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
   printf("[+]Data Send: %s", buffer);
 
-    
-   
+
+
 
 
     readFile();
@@ -130,7 +136,7 @@ int segmentAndSend(char* mainBuffer){
         else {altBit = '0';}
 
          //For now the packet-header structure will be 1 byte Ack, 1 Byte Seq, 
-        char currPacket[PACKET_SIZE/ sizeof(char)];
+        char currPacket[PACKET_SIZE];
         currPacket[0] = '0'; //just init value for checksum
         currPacket[1] = '0'; //just init value for Ack/Nck
         currPacket[2] = altBit;
@@ -173,11 +179,28 @@ unsigned char calculateChecksum(char sourcePacket[], unsigned char length)
      return (checkSum & 0xFF);
  }
 
-int promptGremSettings() {
-    return 0;
-}
+int gremlinFunc(char sourcePacket[]) {
 
-int gremlinFunc(char *sourcePacket) {
-    return 0;
+    int lowerRand = 0;
+    int upperRand = 100;
+
+    int corruptBool = 0;
+    int dropBool = 0;
+
+    int randNum = (rand() % (upperRand - lowerRand + 1) + lowerRand);
+
+    if (randNum <= dmgPktProb) {
+        corruptBool = 1;
+    }
+    if (randNum <= lostPktProb) {
+        dropBool = 1;
+    }
+
+    printf("\n\n\n\nCorrupt packet?\t%d\nLose packet?\t%d\n", corruptBool, dropBool);
+
+
+
+
+
 }
 
