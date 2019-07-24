@@ -26,6 +26,8 @@ char* buffer;
 long numBytes;
 int numPackets;
 int currentBufferPos;
+int dmgPktProb;
+int lostPktProb;
 int sockfd;
 struct sockaddr_in serverAddr;
 
@@ -35,11 +37,11 @@ socklen_t addr_size;
 int readFile();
 int segmentAndSend();
 unsigned char calculateChecksum(char sourcePacket[], unsigned char length);
-int gremlinFunc();
+int gremlinFunc(char sourcePackets[]);
 
 int main(int argc, char** argv) {
 
-    srand(time(NULL))
+    srand(time(NULL));
 
     dmgPktProb = atoi(argv[1]);
     lostPktProb = atoi(argv[2]);
@@ -189,18 +191,43 @@ int gremlinFunc(char sourcePacket[]) {
 
     int randNum = (rand() % (upperRand - lowerRand + 1) + lowerRand);
 
-    if (randNum <= dmgPktProb) {
-        corruptBool = 1;
-    }
-    if (randNum <= lostPktProb) {
-        dropBool = 1;
-    }
+    if (randNum <= dmgPktProb) {corruptBool = 1;}
+    if (randNum <= lostPktProb) {dropBool = 1;}
 
     printf("\n\n\n\nCorrupt packet?\t%d\nLose packet?\t%d\n", corruptBool, dropBool);
 
+    /*upperRand = PACKET_SIZE - 1;
+    randNum = (rand() % (upperRand - lowerRand + 1) + lowerRand);*/
 
+    if (corruptBool) {
 
+        //Determine number of bytes that will be corrupted in this packet
+        int bytesToCorrupt;
+        randNum = (rand() % (upperRand - lowerRand + 1) + lowerRand);
+        if (randNum <= 10) {bytesToCorrupt = 3;}
+        else if (randNum <= 30) {bytesToCorrupt = 2;}
+        else {bytesToCorrupt = 1;}
 
+        //Find which index/byte to corrupt
+        for (int i = 0; i < bytesToCorrupt; i++) {
+            printf("Corrupting %d bytes...\n", bytesToCorrupt);
+            int indexToCorrupt;
+            upperRand = PACKET_SIZE - 1;
+            indexToCorrupt = (rand() % (upperRand - lowerRand + 1) + lowerRand);
 
+            //Set index to random byte value
+            int setVal;
+            upperRand = 255;
+            setVal = randNum = (rand() % (upperRand - lowerRand + 1) + lowerRand);
+            int previousValue = sourcePacket[indexToCorrupt];
+            sourcePacket[indexToCorrupt] = setVal;
+            printf("Byte number %d of value %d has been changed to %d\n", indexToCorrupt, previousValue
+                    , setVal);
+        }
+    }
+
+    if (dropBool) {
+
+    }
 }
 
