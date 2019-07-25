@@ -39,6 +39,7 @@ int main(void) {
 
     recvfrom(sockfd, buffer, 128, 0, (struct sockaddr*)& si_other, &addr_size);
 
+    char clientChecksum = buffer[0];
     
     printf("First 48 bytes of received packet:\n");
     printf("Checksum:%d\n", (unsigned char)buffer[0]);
@@ -49,8 +50,13 @@ int main(void) {
     }
     printf("\n\n");
 
-    buffer[1] = '1';
-    sendto(sockfd, buffer, 128, 0, (struct sockaddr*)& si_other, sizeof(si_other));
+    char serverChecksum = calculateChecksum(buffer, 128);
+    printf("The server checksum is...%d\n\n", (unsigned char)serverChecksum);
+
+    if (serverChecksum == clientChecksum) {
+        buffer[1] = '1';
+    }
+    sendto(sockfd, buffer, 128, 0, (struct sockaddr *) &si_other, sizeof(si_other));
   }
 
     return 0;

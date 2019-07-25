@@ -41,6 +41,7 @@ int gremlinFunc(char* sourcePackets);
 
 int main(int argc, char** argv) {
 
+    sleep(1);
     srand(time(NULL));
 
     if (argv[1] != NULL) {
@@ -54,7 +55,7 @@ int main(int argc, char** argv) {
     }
 
     printf("First two arguments you type:\t%d\t%d\n\n\n", dmgPktProb, lostPktProb);
-    
+
     char buffer[128];
 
     sockfd = socket(PF_INET, SOCK_DGRAM, 0);
@@ -88,7 +89,7 @@ int readFile() {
 
     //Check if file is successfully created
     if (file == NULL) {
-        
+
         printf("Couldn't find specified file...Closing program");
         return 0;
     }
@@ -151,7 +152,7 @@ int segmentAndSend(char* mainBuffer){
             }
             else {
                 currPacket[i] = (char)mainBuffer[currentBufferPos++];
-            }          
+            }
         }
         //Calculate checksum and gremlin in this bish
         currPacket[0] = calculateChecksum(currPacket, 128);
@@ -163,16 +164,18 @@ int segmentAndSend(char* mainBuffer){
 
         for (;;) {
 
-          int whatdo = gremlinFunc(currPacket);
-          if (whatdo == 1) {
+            char* modifiedArray = (char*)malloc(PACKET_SIZE);
+            strcpy(modifiedArray, currPacket);
+          int lostBool = gremlinFunc(modifiedArray);
+          if (lostBool == 1) {
               printf("Packet lost, waiting for timeout...\n");
               //dont send
           }
           else {
               printf("\nSending packet with these header contents:\nChecksum:\t%d\nACK:\t%c\nSequence:\t%c\n"
                       , (unsigned char)currPacket[0], currPacket[1], currPacket[2]);
-              sendto(sockfd, currPacket, 128, 0, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
-              printf("[+]Data Sent: %s\n\n", currPacket);
+              sendto(sockfd, modifiedArray, 128, 0, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
+              printf("[+]Data Sent: %s\n\n", modifiedArray);
           }
 
           recvfrom(sockfd, voidPacket, 128, 0, (struct sockaddr*)&serverAddr, &addr_size);
@@ -192,7 +195,7 @@ int segmentAndSend(char* mainBuffer){
 
 
 
-        
+
     }
 
     return 0;
@@ -203,7 +206,7 @@ unsigned char calculateChecksum(char* sourcePacket, unsigned int length)
  {
      unsigned char count;
      unsigned int checkSum = 0;
-     
+
      for (count = 1; count < length; count++)
          checkSum += sourcePacket[count];
      return (checkSum & 0xFF);
