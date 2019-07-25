@@ -15,7 +15,7 @@
 #define fileName "testFile.txt"
 
 #define PACKET_SIZE 128
-char calculateChecksum(char sourcePacket[], unsigned int length);
+char calculateChecksum(char* sourcePacket, unsigned int length);
 
 int main(void) {
    int sockfd;
@@ -23,6 +23,10 @@ int main(void) {
    char buffer[128];
    socklen_t addr_size;
    char checksum = '0';
+  int sockfd;
+  struct sockaddr_in si_me, si_other;
+  char* buffer = (char*)malloc(128);
+  socklen_t addr_size;
 
    sockfd = socket(AF_INET, SOCK_DGRAM, 0);
 
@@ -81,6 +85,25 @@ char calculateChecksum(char *sourcePacket, unsigned int length)
 {
    unsigned char count;
    unsigned int checkSum = 0;
+    printf("First 48 bytes of received packet:\n");
+    printf("Checksum:%d\n", (unsigned char)buffer[0]);
+    printf("ACK:%c\n", buffer[1]);
+    printf("Sequence #:%c\n", buffer[2]);
+    for (int i = 3; i < 48; i++) {
+        printf("%c", buffer[i]);
+    }
+    printf("\n\n");
+
+    buffer[1] = '1';
+    sendto(sockfd, buffer, 128, 0, (struct sockaddr*)& si_other, sizeof(si_other));
+  }
+
+    return 0;
+}
+char calculateChecksum(char* sourcePacket, unsigned int length)
+{
+     unsigned char count;
+     unsigned int checkSum = 0;
      
    for (count = 1; count < length; count++)
       checkSum += sourcePacket[count];

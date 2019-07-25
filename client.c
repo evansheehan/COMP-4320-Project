@@ -37,7 +37,7 @@ socklen_t addr_size;
 int readFile();
 int segmentAndSend();
 unsigned char calculateChecksum(char sourcePacket[], unsigned int length);
-int gremlinFunc(char sourcePackets[]);
+int gremlinFunc(char* sourcePackets);
 
 int main(int argc, char** argv) {
 
@@ -201,6 +201,82 @@ int segmentAndSend(char* mainBuffer){
    }
 
    return 0;
+    //Determine the number of packets that will need to be sent to the server
+    numPackets = (int)numBytes/(PACKET_SIZE - 3); //minus 3 currently for header
+    currentBufferPos = 0;
+
+
+    /*
+     * If the number of packets isn't evenly divisible by packet size,
+     * we need to send one extra packet that's partially filled with NULL values.
+     */
+    if (numBytes%PACKET_SIZE > 0) {numPackets++; int fillNull = 1;}
+    printf("\n\n\n%d", numPackets);
+
+    //Main loop for creating and sending segments/packets
+    char altBit;
+
+    for (int i = 0; i < numPackets; i++) {
+        int isAckd = 0;
+        if (i % 2 == 1) {altBit = '1';}
+        else {altBit = '0';}
+
+        //For now the packet-header structure will be 1 byte Ack, 1 byte Seq#,
+        char* currPacket = (char*)malloc(PACKET_SIZE);
+        currPacket[0] = '0'; //just init value for checksum
+        currPacket[1] = '0'; //just init value for Ack/Nck
+        currPacket[2] = altBit;
+        for (int i = 3; i < 128; i++) {
+            if (mainBuffer[currentBufferPos] == '\0') {
+                currPacket[i] = '\0';
+            }
+            else {
+                currPacket[i] = (char)mainBuffer[currentBufferPos++];
+            }          
+        }
+        //Calculate checksum and gremlin in this bish
+        currPacket[0] = calculateChecksum(currPacket, 128);
+
+
+        socklen_t addr_size;
+        addr_size = sizeof(serverAddr);
+        char* voidPacket = (char*)malloc(PACKET_SIZE);
+
+        for (;;) {
+
+          int whatdo = gremlinFunc(currPacket);
+          if (whatdo == 1) {
+              printf("Packet lost, waiting for timeout...\n");
+              //dont send
+          }
+          else {
+              printf("\nSending packet with these header contents:\nChecksum:\t%d\nACK:\t%c\nSequence:\t%c\n"
+                      , (unsigned char)currPacket[0], currPacket[1], currPacket[2]);
+              sendto(sockfd, currPacket, 128, 0, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
+              printf("[+]Data Sent: %s\n\n", currPacket);
+          }
+
+          recvfrom(sockfd, voidPacket, 128, 0, (struct sockaddr*)&serverAddr, &addr_size);
+          if (voidPacket[1] == '1') {
+              printf("Receiving packet with these header contents:\nChecksum:\t%d\nACK:\t%c\nSequence:\t%c\n"
+                        , (unsigned char)voidPacket[0], voidPacket[1], voidPacket[2]);
+              printf("[+]Data Received: %s", voidPacket);
+              voidPacket[1] = '0';
+              break;
+          }
+          else {
+              printf("ACK not received\n");
+          }
+
+
+        };
+
+
+
+        
+    }
+
+    return 0;
 }
 
 //We are going to keep it simple
