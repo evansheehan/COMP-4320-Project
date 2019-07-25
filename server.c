@@ -40,7 +40,7 @@ int main(void) {
     recvfrom(sockfd, buffer, 128, 0, (struct sockaddr*)& si_other, &addr_size);
 
 
-    printf("First 48 bytes of received packet:\n");
+    printf("Received packet information:\n");
     printf("Checksum:%d\n", (unsigned char)buffer[0]);
     printf("ACK:%c\n", buffer[1]);
     printf("Sequence #:%c\n", buffer[2]);
