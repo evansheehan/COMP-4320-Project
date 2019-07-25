@@ -32,7 +32,10 @@ int main(void) {
   bind(sockfd, (struct sockaddr*)&si_me, sizeof(si_me));
   addr_size = sizeof(si_other);
 
+  int seqNumExpected = 0;
+
   for (;;) {
+
     recvfrom(sockfd, buffer, 128, 0, (struct sockaddr*)& si_other, &addr_size);
 
     printf("First 48 bytes of current packet:\n");

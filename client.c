@@ -37,7 +37,7 @@ socklen_t addr_size;
 int readFile();
 int segmentAndSend();
 unsigned char calculateChecksum(char sourcePacket[], unsigned char length);
-int gremlinFunc(unsigned char sourcePackets[]);
+char* gremlinFunc(unsigned char sourcePackets[]);
 
 int main(int argc, char** argv) {
 
@@ -55,7 +55,7 @@ int main(int argc, char** argv) {
 
     printf("First two arguments you type:\t%d\t%d\n\n\n", dmgPktProb, lostPktProb);
     
-    char buffer[1024];
+    char buffer[128];
 
     sockfd = socket(PF_INET, SOCK_DGRAM, 0);
     memset(&serverAddr, '\0', sizeof(serverAddr));
@@ -159,10 +159,11 @@ int segmentAndSend(char* mainBuffer){
         }
         //Calculate checksum and gremlin in this bish
         currPacket[0] = calculateChecksum(currPacket, 128);
-        //gremlinFunc(currPacket);
+        gremlinFunc(currPacket);
         socklen_t addr_size;
         addr_size = sizeof(serverAddr);
-        sendto(sockfd, currPacket, 1024, 0, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
+
+        sendto(sockfd, currPacket, 128, 0, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
 
         recvfrom(sockfd, voidPacket, 128, 0, (struct sockaddr*)&serverAddr, &addr_size);
         printf("[+]Data Received: %s", voidPacket);
@@ -181,12 +182,11 @@ unsigned char calculateChecksum(char sourcePacket[], unsigned char length)
      
      for (count = 1; count < length; count++)
          checkSum += sourcePacket[count];
-
      return (checkSum & 0xFF);
  }
 
  //Returns 1 if packet is lost. Returns 0 otherwise.
-int gremlinFunc(unsigned char sourcePacket[]) {
+char* gremlinFunc(unsigned char sourcePacket[]) {
 
     int lowerRand = 0;
     int upperRand = 100;
@@ -194,23 +194,25 @@ int gremlinFunc(unsigned char sourcePacket[]) {
     int corruptBool = 0;
     int dropBool = 0;
 
-    int randNum = (rand() % (upperRand - lowerRand + 1) + lowerRand);
+    int randNum1 = (rand() % (upperRand - lowerRand + 1) + lowerRand);
+    int randNum2 = (rand() % (upperRand - lowerRand + 1) + lowerRand);
 
-    if (randNum <= dmgPktProb) {corruptBool = 1;}
-    if (randNum <= lostPktProb) {dropBool = 1;}
+    if (randNum1 <= dmgPktProb) {corruptBool = 1;}
+    if (randNum2 <= lostPktProb) {dropBool = 1;}
 
     printf("\n\n\n\nCorrupt packet?\t%d\nLose packet?\t%d\n", corruptBool, dropBool);
 
     if (dropBool) {
-        return 1;
+        char dropped[] = "dropped";
+        return dropped;
     }
 
     if (corruptBool) {
         //Determine number of bytes that will be corrupted in this packet
         int bytesToCorrupt;
-        randNum = (rand() % (upperRand - lowerRand + 1) + lowerRand);
-        if (randNum <= 10) {bytesToCorrupt = 3;}
-        else if (randNum <= 30) {bytesToCorrupt = 2;}
+        randNum1 = (rand() % (upperRand - lowerRand + 1) + lowerRand);
+        if (randNum1 <= 10) {bytesToCorrupt = 3;}
+        else if (randNum1 <= 30) {bytesToCorrupt = 2;}
         else {bytesToCorrupt = 1;}
 
 
@@ -231,6 +233,6 @@ int gremlinFunc(unsigned char sourcePacket[]) {
                    sourcePacket[indexToCorrupt]);
         }
     }
-     return 0;
+     return sourcePacket;
 }
 
