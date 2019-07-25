@@ -62,7 +62,7 @@ int main(int argc, char** argv) {
 
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_port = htons(5566);
-    serverAddr.sin_addr.s_addr = inet_addr("172.19.88.238");
+    serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
 
     strcpy(buffer, "Hello Server\n");
     sendto(sockfd, buffer, 128, 0, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
@@ -111,7 +111,7 @@ int readFile() {
     //Put file contents into created character array buffer
     fread(buffer, sizeof(char), numBytes, file);
     fclose(file);
-    printf("The file contents are: \n\n%s", buffer);
+    //printf("The file contents are: \n\n%s", buffer);
 
     segmentAndSend(buffer);
 
@@ -159,13 +159,15 @@ int segmentAndSend(char* mainBuffer){
         }
         //Calculate checksum and gremlin in this bish
         currPacket[0] = calculateChecksum(currPacket, 128);
-        gremlinFunc(currPacket);
+        //gremlinFunc(currPacket);
+        socklen_t addr_size;
+        addr_size = sizeof(serverAddr);
         sendto(sockfd, currPacket, 1024, 0, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
-        sendto(clientSock, "hello!", 128, 0, (struct sockaddr *)&server, sizeof(server));
-        printf("SENT BOY");
+
+        recvfrom(sockfd, voidPacket, 128, 0, (struct sockaddr*)&serverAddr, &addr_size);
+        printf("[+]Data Received: %s", voidPacket);
+
         
-        recv(clientSock, voidPacket, sizeof(voidPacket), 0);
-        printf("%s", voidPacket);
     }
 
     return 0;
@@ -179,7 +181,7 @@ unsigned char calculateChecksum(char sourcePacket[], unsigned char length)
      
      for (count = 1; count < length; count++)
          checkSum += sourcePacket[count];
-     checkSum = -checkSum;
+
      return (checkSum & 0xFF);
  }
 
