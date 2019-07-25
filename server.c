@@ -32,8 +32,11 @@ int main(void) {
   bind(sockfd, (struct sockaddr*)&si_me, sizeof(si_me));
   addr_size = sizeof(si_other);
   for (;;) {
-    recvfrom(sockfd, buffer, 1024, 0, (struct sockaddr*)& si_other, &addr_size);
+    recvfrom(sockfd, buffer, 128, 0, (struct sockaddr*)& si_other, &addr_size);
+    printf("Checksum %d", (unsigned int)buffer[0]);
     printf("[+]Data Received: %s", buffer);
+    buffer[1] = '1';
+    sendto(sockfd, buffer, 128, 0, (struct sockaddr*)& si_other, sizeof(si_other));
   }
 
 

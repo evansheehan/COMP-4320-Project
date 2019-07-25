@@ -111,7 +111,7 @@ int readFile() {
     //Put file contents into created character array buffer
     fread(buffer, sizeof(char), numBytes, file);
     fclose(file);
-    printf("The file contents are: \n\n%s", buffer);
+  //  printf("The file contents are: \n\n%s", buffer);
 
     segmentAndSend(buffer);
 
@@ -160,16 +160,14 @@ int segmentAndSend(char* mainBuffer){
        
         //calculate checksum and gremlin in this bish
         currPacket[0] = calculateChecksum(currPacket, 128);
-        gremlinFunc(currPacket);
+        //gremlinFunc(currPacket);
+        socklen_t addr_size;
+        addr_size = sizeof(serverAddr);
         sendto(sockfd, currPacket, 1024, 0, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
-        sendto(clientSock, "hello!", 128, 0, (struct sockaddr *)&server, sizeof(server));
-        printf("SENT BOY");
-        
-        recv(clientSock, voidPacket, sizeof(voidPacket), 0);
-        printf("%s", voidPacket);
 
+        recvfrom(sockfd, voidPacket, 128, 0, (struct sockaddr*)&serverAddr, &addr_size);
+        printf("[+]Data Received: %s", voidPacket);
         
-
         
     }
 
@@ -184,7 +182,7 @@ unsigned char calculateChecksum(char sourcePacket[], unsigned char length)
      
      for (count = 1; count < length; count++)
          checkSum += sourcePacket[count];
-     checkSum = -checkSum;
+     
      return (checkSum & 0xFF);
  }
 
@@ -235,5 +233,6 @@ int gremlinFunc(unsigned char sourcePacket[]) {
         }
         return 0;
     }
+    return 0;
 }
 
