@@ -34,13 +34,10 @@ int main(void) {
 
   for (;;) {
     recvfrom(sockfd, buffer, 128, 0, (struct sockaddr*)& si_other, &addr_size);
-<<<<<<< HEAD
-    printf("Checksum %d", (unsigned int)(unsigned char)buffer[0]);
-    printf("[+]Data Received: %s\n\n", buffer);
-=======
+
 
     printf("First 48 bytes of current packet:\n");
-    printf("Checksum:%d\n", (unsigned char)buffer[0]);
+    printf("Checksum:%d\n", (unsigned int)(unsigned char)buffer[0]);
     printf("ACK:%c\n", buffer[1]);
     printf("Sequence #:%c\n", buffer[2]);
     for (int i = 3; i < 48; i++) {
@@ -48,7 +45,6 @@ int main(void) {
     }
     printf("\n\n");
 
->>>>>>> d190dd48a2d5cf77dfa8b2c06b8110d5e29da3a7
     buffer[1] = '1';
     sendto(sockfd, buffer, 128, 0, (struct sockaddr*)& si_other, sizeof(si_other));
   }

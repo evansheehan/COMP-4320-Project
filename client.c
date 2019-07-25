@@ -64,15 +64,12 @@ int main(int argc, char** argv) {
     serverAddr.sin_port = htons(5566);
     serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
 
-<<<<<<< HEAD
+
     struct timeval tv;
     tv.tv_sec = 5;
     tv.tv_usec = 0;
     setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
-=======
-   
 
->>>>>>> d190dd48a2d5cf77dfa8b2c06b8110d5e29da3a7
 
 
 
@@ -169,7 +166,6 @@ int segmentAndSend(char* mainBuffer){
         
         socklen_t addr_size;
         addr_size = sizeof(serverAddr);
-<<<<<<< HEAD
         char voidPacket[128];
 
         for (;;) {
@@ -197,10 +193,7 @@ int segmentAndSend(char* mainBuffer){
         };
         
         
-=======
-        
 
->>>>>>> d190dd48a2d5cf77dfa8b2c06b8110d5e29da3a7
         
     }
 
@@ -215,15 +208,9 @@ unsigned char calculateChecksum(char sourcePacket[], unsigned int length)
      
      for (count = 1; count < length; count++)
          checkSum += sourcePacket[count];
-<<<<<<< HEAD
-     
-     checkSum = (checkSum & 0xFF);
-    
-     return  checkSum;
-=======
 
+ 
      return (checkSum & 0xFF);
->>>>>>> d190dd48a2d5cf77dfa8b2c06b8110d5e29da3a7
  }
 
  //Returns 1 if packet is lost. Returns 0 otherwise.
