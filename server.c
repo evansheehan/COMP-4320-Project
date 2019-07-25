@@ -19,7 +19,7 @@
 int main(void) {
   int sockfd;
   struct sockaddr_in si_me, si_other;
-  char buffer[1024];
+  char buffer[128];
   socklen_t addr_size;
 
   sockfd = socket(AF_INET, SOCK_DGRAM, 0);
@@ -27,13 +27,24 @@ int main(void) {
   memset(&si_me, '\0', sizeof(si_me));
   si_me.sin_family = AF_INET;
   si_me.sin_port = htons(5566);
-  si_me.sin_addr.s_addr = inet_addr("127.0.0.1");
+  si_me.sin_addr.s_addr = inet_addr("172.19.88.238");
 
   bind(sockfd, (struct sockaddr*)&si_me, sizeof(si_me));
   addr_size = sizeof(si_other);
+
   for (;;) {
-    recvfrom(sockfd, buffer, 1024, 0, (struct sockaddr*)& si_other, &addr_size);
-    printf("[+]Data Received: %s", buffer);
+    recvfrom(sockfd, buffer, 128, 0, (struct sockaddr*)& si_other, &addr_size);
+
+    printf("First 48 bytes of current packet:\n");
+    printf("Checksum:%d\n", (unsigned char)buffer[0]);
+    printf("ACK:%c\n", buffer[1]);
+    printf("Sequence #:%c\n", buffer[2]);
+    for (int i = 3; i < 48; i++) {
+        printf("%c", buffer[i]);
+    }
+    printf("\n\n");
+
+
   }
 
 
