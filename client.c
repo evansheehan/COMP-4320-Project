@@ -64,10 +64,15 @@ int main(int argc, char** argv) {
     serverAddr.sin_port = htons(5566);
     serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
 
+<<<<<<< HEAD
     struct timeval tv;
     tv.tv_sec = 5;
     tv.tv_usec = 0;
     setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
+=======
+   
+
+>>>>>>> d190dd48a2d5cf77dfa8b2c06b8110d5e29da3a7
 
 
 
@@ -111,7 +116,7 @@ int readFile() {
     //Put file contents into created character array buffer
     fread(buffer, sizeof(char), numBytes, file);
     fclose(file);
-  //  printf("The file contents are: \n\n%s", buffer);
+    //printf("The file contents are: \n\n%s", buffer);
 
     segmentAndSend(buffer);
 
@@ -145,7 +150,7 @@ int segmentAndSend(char* mainBuffer){
         if (i % 2 == 1) {altBit = '1';}
         else {altBit = '0';}
 
-         //For now the packet-header structure will be 1 byte Ack, 1 Byte Seq, 
+        //For now the packet-header structure will be 1 byte Ack, 1 byte Seq#,
         char currPacket[PACKET_SIZE];
         currPacket[0] = '0'; //just init value for checksum
         currPacket[1] = '0'; //just init value for Ack/Nck
@@ -158,13 +163,13 @@ int segmentAndSend(char* mainBuffer){
                 currPacket[i] = (char)mainBuffer[currentBufferPos++];
             }          
         }
-       
-        //calculate checksum and gremlin in this bish
+        //Calculate checksum and gremlin in this bish
         currPacket[0] = calculateChecksum(currPacket, 128);
 
         
         socklen_t addr_size;
         addr_size = sizeof(serverAddr);
+<<<<<<< HEAD
         char voidPacket[128];
 
         for (;;) {
@@ -192,6 +197,10 @@ int segmentAndSend(char* mainBuffer){
         };
         
         
+=======
+        
+
+>>>>>>> d190dd48a2d5cf77dfa8b2c06b8110d5e29da3a7
         
     }
 
@@ -206,10 +215,15 @@ unsigned char calculateChecksum(char sourcePacket[], unsigned int length)
      
      for (count = 1; count < length; count++)
          checkSum += sourcePacket[count];
+<<<<<<< HEAD
      
      checkSum = (checkSum & 0xFF);
     
      return  checkSum;
+=======
+
+     return (checkSum & 0xFF);
+>>>>>>> d190dd48a2d5cf77dfa8b2c06b8110d5e29da3a7
  }
 
  //Returns 1 if packet is lost. Returns 0 otherwise.
@@ -233,7 +247,6 @@ int gremlinFunc(char sourcePacket[]) {
     }
 
     if (corruptBool) {
-
         //Determine number of bytes that will be corrupted in this packet
         int bytesToCorrupt;
         randNum = (rand() % (upperRand - lowerRand + 1) + lowerRand);
@@ -241,8 +254,9 @@ int gremlinFunc(char sourcePacket[]) {
         else if (randNum <= 30) {bytesToCorrupt = 2;}
         else {bytesToCorrupt = 1;}
 
-        //Find which index/byte to corrupt
+
         for (int i = 0; i < bytesToCorrupt; i++) {
+            //Find which index/byte to corrupt
             printf("Corrupting %d bytes...\n", bytesToCorrupt);
             int indexToCorrupt;
             upperRand = PACKET_SIZE - 1;
@@ -253,12 +267,11 @@ int gremlinFunc(char sourcePacket[]) {
             upperRand = 255;
             setVal = (rand() % (upperRand - lowerRand + 1) + lowerRand);
             unsigned char previousValue = sourcePacket[indexToCorrupt];
-            sourcePacket[indexToCorrupt] = (char)setVal;
-            printf("Byte number %d of value %d has been changed to %d\n", indexToCorrupt, previousValue
-                    , sourcePacket[indexToCorrupt]);
+            sourcePacket[indexToCorrupt] = (char) setVal;
+            printf("Byte number %d of value %d has been changed to %d\n", indexToCorrupt, previousValue,
+                   sourcePacket[indexToCorrupt]);
         }
-        return 0;
     }
-    return 0;
+     return 0;
 }
 
