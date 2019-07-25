@@ -38,8 +38,9 @@ int main(void) {
 
     recvfrom(sockfd, buffer, 128, 0, (struct sockaddr*)& si_other, &addr_size);
 
+
     printf("First 48 bytes of current packet:\n");
-    printf("Checksum:%d\n", (unsigned char)buffer[0]);
+    printf("Checksum:%d\n", (unsigned int)(unsigned char)buffer[0]);
     printf("ACK:%c\n", buffer[1]);
     printf("Sequence #:%c\n", buffer[2]);
     for (int i = 3; i < 48; i++) {
