@@ -143,7 +143,7 @@ int segmentAndSend(char* mainBuffer){
         else {altBit = '0';}
 
         //For now the packet-header structure will be 1 byte Ack, 1 byte Seq#,
-        char currPacket[PACKET_SIZE];
+        char* currPacket = (char*)malloc(PACKET_SIZE);
         currPacket[0] = '0'; //just init value for checksum
         currPacket[1] = '0'; //just init value for Ack/Nck
         currPacket[2] = altBit;
@@ -196,7 +196,7 @@ int segmentAndSend(char* mainBuffer){
 }
 
 //We are going to keep it simple
-unsigned char calculateChecksum(char sourcePacket[], unsigned int length)
+unsigned char calculateChecksum(char* sourcePacket, unsigned int length)
  {
      unsigned char count;
      unsigned int checkSum = 0;
@@ -207,7 +207,7 @@ unsigned char calculateChecksum(char sourcePacket[], unsigned int length)
  }
 
  //Returns 1 if packet is lost. Returns 0 otherwise.
-int gremlinFunc(char sourcePacket[]) {
+int gremlinFunc(char* sourcePacket) {
 
     int lowerRand = 0;
     int upperRand = 100;

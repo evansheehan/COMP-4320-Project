@@ -15,6 +15,7 @@
 #define fileName "testFile.txt"
 
 #define PACKET_SIZE 128
+char calculateChecksum(char sourcePacket[], unsigned int length);
 
 int main(void) {
   int sockfd;
@@ -38,7 +39,7 @@ int main(void) {
 
     recvfrom(sockfd, buffer, 128, 0, (struct sockaddr*)& si_other, &addr_size);
 
-
+    
     printf("First 48 bytes of current packet:\n");
     printf("Checksum:%d\n", (unsigned int)(unsigned char)buffer[0]);
     printf("ACK:%c\n", buffer[1]);
@@ -56,8 +57,12 @@ int main(void) {
 
     return 0;
 }
-
-int serverProcess() {
-
-    return 0;
-}
+char calculateChecksum(char *sourcePacket, unsigned int length)
+ {
+     unsigned char count;
+     unsigned int checkSum = 0;
+     
+     for (count = 1; count < length; count++)
+         checkSum += sourcePacket[count];
+     return (checkSum & 0xFF);
+ }
