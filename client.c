@@ -37,7 +37,7 @@ socklen_t addr_size;
 int readFile();
 int segmentAndSend();
 unsigned char calculateChecksum(char sourcePacket[], unsigned int length);
-int gremlinFunc(char sourcePackets[]);
+int gremlinFunc(char* sourcePackets);
 
 int main(int argc, char** argv) {
 
@@ -135,8 +135,6 @@ int segmentAndSend(char* mainBuffer){
     //Main loop for creating and sending segments/packets
     char altBit;
 
-    
-
     for (int i = 0; i < numPackets; i++) {
         int isAckd = 0;
         if (i % 2 == 1) {altBit = '1';}
@@ -167,21 +165,25 @@ int segmentAndSend(char* mainBuffer){
 
           int whatdo = gremlinFunc(currPacket);
           if (whatdo == 1) {
-              printf("not sent");
+              printf("Packet lost, waiting for timeout...\n");
               //dont send
           }
           else {
+              printf("\nSending packet with these header contents:\nChecksum:\t%d\nACK:\t%c\nSequence:\t%c\n\n"
+                      , currPacket[0], currPacket[1], currPacket[2]);
               sendto(sockfd, currPacket, 128, 0, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
           }
 
           recvfrom(sockfd, voidPacket, 128, 0, (struct sockaddr*)&serverAddr, &addr_size);
           if (voidPacket[1] == '1') {
+              printf("\nReceiving packet with these header contents:\nChecksum:\t%d\nACK:\t%c\nSequence:\t%c\n\n"
+                        , voidPacket[0], voidPacket[1], voidPacket[2]);
               printf("[+]Data Received: %s", voidPacket);
               voidPacket[1] = '0';
               break;
           }
           else {
-              printf("Shit was dropped");
+              printf("ACK not received\n");
           }
 
 
