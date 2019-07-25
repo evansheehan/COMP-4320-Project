@@ -169,15 +169,16 @@ int segmentAndSend(char* mainBuffer){
               //dont send
           }
           else {
-              printf("\nSending packet with these header contents:\nChecksum:\t%d\nACK:\t%c\nSequence:\t%c\n\n"
-                      , currPacket[0], currPacket[1], currPacket[2]);
+              printf("\nSending packet with these header contents:\nChecksum:\t%d\nACK:\t%c\nSequence:\t%c\n"
+                      , (unsigned char)currPacket[0], currPacket[1], currPacket[2]);
               sendto(sockfd, currPacket, 128, 0, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
+              printf("[+]Data Sent: %s\n\n", currPacket);
           }
 
           recvfrom(sockfd, voidPacket, 128, 0, (struct sockaddr*)&serverAddr, &addr_size);
           if (voidPacket[1] == '1') {
-              printf("\nReceiving packet with these header contents:\nChecksum:\t%d\nACK:\t%c\nSequence:\t%c\n\n"
-                        , voidPacket[0], voidPacket[1], voidPacket[2]);
+              printf("Receiving packet with these header contents:\nChecksum:\t%d\nACK:\t%c\nSequence:\t%c\n"
+                        , (unsigned char)voidPacket[0], voidPacket[1], voidPacket[2]);
               printf("[+]Data Received: %s", voidPacket);
               voidPacket[1] = '0';
               break;
