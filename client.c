@@ -44,6 +44,7 @@ int gremlinFunc(char *sourcePackets);
 
 int main(int argc, char **argv) {
 
+    sleep(1);
     srand(time(NULL));
 
     if (argv[1] != NULL) {
@@ -167,6 +168,10 @@ int segmentAndSend(char *mainBuffer) {
 
         for (;;) {
 
+            //char* tempArray = (char*)malloc(PACKET_SIZE);
+            //strcpy(tempArray, currPacket);
+
+            //int whatdo = gremlinFunc(tempArray);
             int whatdo = gremlinFunc(currPacket);
             if (whatdo == 1) {
                 printf("Packet lost, waiting for timeout...\n");
@@ -176,6 +181,11 @@ int segmentAndSend(char *mainBuffer) {
                        (unsigned char) currPacket[0], currPacket[1], currPacket[2]);
                 sendto(sockfd, currPacket, 128, 0, (struct sockaddr *) &serverAddr, sizeof(serverAddr));
                 printf("[+]Data Sent: %s\n\n", currPacket);
+
+                /*printf("\nSending packet with these header contents:\nChecksum:\t%d\nACK:\t%c\nSequence:\t%c\n",
+                       (unsigned char) tempArray[0], tempArray[1], tempArray[2]);
+                sendto(sockfd, tempArray, 128, 0, (struct sockaddr *) &serverAddr, sizeof(serverAddr));
+                printf("[+]Data Sent: %s\n\n", tempArray);*/
             }
 
             recvfrom(sockfd, voidPacket, 128, 0, (struct sockaddr *) &serverAddr, &addr_size);
@@ -188,8 +198,6 @@ int segmentAndSend(char *mainBuffer) {
             } else {
                 printf("ACK not received\n");
             }
-
-
         };
 
 

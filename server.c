@@ -20,7 +20,7 @@ char calculateChecksum(char* sourcePacket, unsigned int length);
 int main(void) {
   int sockfd;
   struct sockaddr_in si_me, si_other;
-  char* buffer = (char*)malloc(128);
+  char* buffer = (char*)malloc(PACKET_SIZE);
   socklen_t addr_size;
 
   sockfd = socket(AF_INET, SOCK_DGRAM, 0);
@@ -39,7 +39,6 @@ int main(void) {
 
     recvfrom(sockfd, buffer, 128, 0, (struct sockaddr*)& si_other, &addr_size);
 
-
     printf("Received packet information:\n");
     printf("Checksum:%d\n", (unsigned char)buffer[0]);
     printf("ACK:%c\n", buffer[1]);
@@ -49,6 +48,7 @@ int main(void) {
     }
     printf("\n\n");
 
+    //Change ACK bit to 1
     buffer[1] = '1';
     sendto(sockfd, buffer, 128, 0, (struct sockaddr*)& si_other, sizeof(si_other));
   }
