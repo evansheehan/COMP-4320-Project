@@ -69,10 +69,6 @@ int main(int argc, char** argv) {
     tv.tv_usec = 0;
     setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
 
-
-
-
-
     readFile();
 
 
@@ -165,7 +161,7 @@ int segmentAndSend(char* mainBuffer){
 
         socklen_t addr_size;
         addr_size = sizeof(serverAddr);
-        char voidPacket[128];
+        char* voidPacket = (char*)malloc(PACKET_SIZE);
 
         for (;;) {
 
