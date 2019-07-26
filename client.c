@@ -22,7 +22,7 @@
 
 int clientSock;
 struct sockaddr_in server;
-char *buffer;
+char* buffer;
 long numBytes;
 int numPackets;
 int currentBufferPos;
@@ -35,29 +35,26 @@ socklen_t addr_size;
 
 
 int readFile();
-
 int segmentAndSend();
-
 unsigned char calculateChecksum(char sourcePacket[], unsigned int length);
+int gremlinFunc(char sourcePackets[]);
 
-int gremlinFunc(char *sourcePackets);
+int main(int argc, char** argv) {
 
-int main(int argc, char **argv) {
-
-    sleep(1);
     srand(time(NULL));
 
     if (argv[1] != NULL) {
         dmgPktProb = atoi(argv[1]);
         lostPktProb = atoi(argv[2]);
-    } else {
+    }
+    else {
         printf("Please enter two arguments:\nThe probability of a packet being corrupted..."
-               "\nand the probability of a packet being lost...\n\n");
+                 "\nand the probability of a packet being lost...\n\n");
         return 0;
     }
 
     printf("First two arguments you type:\t%d\t%d\n\n\n", dmgPktProb, lostPktProb);
-
+    
     char buffer[128];
 
     sockfd = socket(PF_INET, SOCK_DGRAM, 0);
@@ -68,9 +65,9 @@ int main(int argc, char **argv) {
     serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
 
     struct timeval tv;
-    tv.tv_sec = 5;
+    tv.tv_sec = 1;
     tv.tv_usec = 0;
-    setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, (const char *) &tv, sizeof tv);
+    setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
 
     readFile();
 
@@ -87,11 +84,11 @@ int serverProcess() {
 int readFile() {
 
     //Read file and put in buffer
-    FILE *file = fopen(fileName, "r");
+    FILE* file = fopen(fileName, "r");
 
     //Check if file is successfully created
     if (file == NULL) {
-
+        
         printf("Couldn't find specified file...Closing program");
         return 0;
     }
@@ -105,8 +102,8 @@ int readFile() {
     fseek(file, 0L, SEEK_SET);
 
     //Allocate memory for the buffer to hold file text
-    buffer = (char *) malloc(numBytes);
-    if (buffer == NULL) { return 0; } //Memory error checking
+    buffer = (char*)malloc(numBytes);
+    if (buffer == NULL) {return 0;} //Memory error checking
 
     //Put file contents into created character array buffer
     fread(buffer, sizeof(char), numBytes, file);
@@ -121,10 +118,10 @@ int readFile() {
     return 0;
 }
 
-int segmentAndSend(char *mainBuffer) {
+int segmentAndSend(char* mainBuffer){
 
     //Determine the number of packets that will need to be sent to the server
-    numPackets = (int) numBytes / (PACKET_SIZE - 3); //minus 3 currently for header
+    numPackets = (int)numBytes/(PACKET_SIZE - 3); //minus 3 currently for header
     currentBufferPos = 0;
 
 
@@ -132,31 +129,31 @@ int segmentAndSend(char *mainBuffer) {
      * If the number of packets isn't evenly divisible by packet size,
      * we need to send one extra packet that's partially filled with NULL values.
      */
-    if (numBytes % PACKET_SIZE > 0) {
-        numPackets++;
-        int fillNull = 1;
-    }
-    printf("\n\n\n%d", numPackets);
+    if (numBytes%PACKET_SIZE > 0) {numPackets++; int fillNull = 1;}
+   
 
     //Main loop for creating and sending segments/packets
     char altBit;
 
+    
+
     for (int i = 0; i < numPackets; i++) {
         int isAckd = 0;
-        if (i % 2 == 1) { altBit = '1'; }
-        else { altBit = '0'; }
+        if (i % 2 == 1) {altBit = '1';}
+        else {altBit = '0';}
 
         //For now the packet-header structure will be 1 byte Ack, 1 byte Seq#,
-        char *currPacket = (char *) malloc(PACKET_SIZE);
+        char* currPacket = (char*)malloc(PACKET_SIZE);
         currPacket[0] = '0'; //just init value for checksum
         currPacket[1] = '0'; //just init value for Ack/Nck
         currPacket[2] = altBit;
         for (int i = 3; i < 128; i++) {
             if (mainBuffer[currentBufferPos] == '\0') {
                 currPacket[i] = '\0';
-            } else {
-                currPacket[i] = (char) mainBuffer[currentBufferPos++];
             }
+            else {
+                currPacket[i] = (char)mainBuffer[currentBufferPos++];
+            }          
         }
         //Calculate checksum and gremlin in this bish
         currPacket[0] = calculateChecksum(currPacket, 128);
@@ -164,60 +161,62 @@ int segmentAndSend(char *mainBuffer) {
 
         socklen_t addr_size;
         addr_size = sizeof(serverAddr);
-        char *voidPacket = (char *) malloc(PACKET_SIZE);
+        char* voidPacket = (char*)malloc(PACKET_SIZE);
+        char* modPacket = (char*)malloc(PACKET_SIZE);
 
         for (;;) {
+          memset(modPacket, 0, PACKET_SIZE);
+          memset(voidPacket, 0, PACKET_SIZE);
+          strcpy(modPacket, currPacket);
 
-            //char* tempArray = (char*)malloc(PACKET_SIZE);
-            //strcpy(tempArray, currPacket);
+          int whatdo = gremlinFunc(modPacket);
+          if (whatdo == 1) {
+              printf("Packet was dropped...");
+          }
+          else {
+              sendto(sockfd, modPacket, 128, 0, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
+          }
 
-            //int whatdo = gremlinFunc(tempArray);
-            int whatdo = gremlinFunc(currPacket);
-            if (whatdo == 1) {
-                printf("Packet lost, waiting for timeout...\n");
-                //dont send
-            } else {
-                printf("\nSending packet with these header contents:\nChecksum:\t%d\nACK:\t%c\nSequence:\t%c\n",
-                       (unsigned char) currPacket[0], currPacket[1], currPacket[2]);
-                sendto(sockfd, currPacket, 128, 0, (struct sockaddr *) &serverAddr, sizeof(serverAddr));
-                printf("[+]Data Sent: %s\n\n", currPacket);
+          recvfrom(sockfd, voidPacket, 128, 0, (struct sockaddr*)&serverAddr, &addr_size);
+          if (voidPacket[1] == '1') {
+              printf("[+]Data Received: \n");
+              for (int i = 3; i < 48; i++) {
+                  printf("%c", voidPacket[i]);
+              }
+              voidPacket[1] = '0';
+              break;
+          }
+          else {
+              printf("\nResending Packet");
+          }
 
-                /*printf("\nSending packet with these header contents:\nChecksum:\t%d\nACK:\t%c\nSequence:\t%c\n",
-                       (unsigned char) tempArray[0], tempArray[1], tempArray[2]);
-                sendto(sockfd, tempArray, 128, 0, (struct sockaddr *) &serverAddr, sizeof(serverAddr));
-                printf("[+]Data Sent: %s\n\n", tempArray);*/
-            }
 
-            recvfrom(sockfd, voidPacket, 128, 0, (struct sockaddr *) &serverAddr, &addr_size);
-            if (voidPacket[1] == '1') {
-                printf("Receiving packet with these header contents:\nChecksum:\t%d\nACK:\t%c\nSequence:\t%c\n",
-                       (unsigned char) voidPacket[0], voidPacket[1], voidPacket[2]);
-                printf("[+]Data Received: %s", voidPacket);
-                voidPacket[1] = '0';
-                break;
-            } else {
-                printf("ACK not received\n");
-            }
         };
 
 
-    }
 
+        
+    }
+    printf("\n\nPackets Sent: %d", numPackets);
+    char* finalAck = (char*)malloc(PACKET_SIZE);
+    recvfrom(sockfd, finalAck, 128, 0, (struct sockaddr*)&serverAddr, &addr_size);
+    printf("%s", finalAck);
     return 0;
 }
 
 //We are going to keep it simple
-unsigned char calculateChecksum(char *sourcePacket, unsigned int length) {
-    unsigned char count;
-    unsigned int checkSum = 0;
+unsigned char calculateChecksum(char* sourcePacket, unsigned int length)
+ {
+     unsigned char count;
+     unsigned int checkSum = 0;
+     
+     for (count = 1; count < length; count++)
+         checkSum += sourcePacket[count];
+     return (checkSum & 0xFF);
+ }
 
-    for (count = 1; count < length; count++)
-        checkSum += sourcePacket[count];
-    return (checkSum & 0xFF);
-}
-
-//Returns 1 if packet is lost. Returns 0 otherwise.
-int gremlinFunc(char *sourcePacket) {
+ //Returns 1 if packet is lost. Returns 0 otherwise.
+int gremlinFunc(char* sourcePacket) {
 
     int lowerRand = 0;
     int upperRand = 100;
@@ -228,8 +227,8 @@ int gremlinFunc(char *sourcePacket) {
     int randNum1 = (rand() % (upperRand - lowerRand + 1) + lowerRand);
     int randNum2 = (rand() % (upperRand - lowerRand + 1) + lowerRand);
 
-    if (randNum1 <= dmgPktProb) { corruptBool = 1; }
-    if (randNum2 <= lostPktProb) { dropBool = 1; }
+    if (randNum1 <= dmgPktProb) {corruptBool = 1;}
+    if (randNum2 <= lostPktProb) {dropBool = 1;}
 
     printf("\n\n\n\nCorrupt packet?\t%d\nLose packet?\t%d\n", corruptBool, dropBool);
 
@@ -241,9 +240,9 @@ int gremlinFunc(char *sourcePacket) {
         //Determine number of bytes that will be corrupted in this packet
         int bytesToCorrupt;
         randNum1 = (rand() % (upperRand - lowerRand + 1) + lowerRand);
-        if (randNum1 <= 10) { bytesToCorrupt = 3; }
-        else if (randNum1 <= 30) { bytesToCorrupt = 2; }
-        else { bytesToCorrupt = 1; }
+        if (randNum1 <= 10) {bytesToCorrupt = 3;}
+        else if (randNum1 <= 30) {bytesToCorrupt = 2;}
+        else {bytesToCorrupt = 1;}
 
 
         for (int i = 0; i < bytesToCorrupt; i++) {
@@ -263,6 +262,6 @@ int gremlinFunc(char *sourcePacket) {
                    sourcePacket[indexToCorrupt]);
         }
     }
-    return 0;
+     return 0;
 }
 
