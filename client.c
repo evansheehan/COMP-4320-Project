@@ -96,7 +96,7 @@ int readFile() {
     //Gets number of bytes for file
     fseek(file, 0L, SEEK_END);
     numBytes = ftell(file);
-    printf("%ld\n", numBytes);
+   
 
     //Resets file position indicator to beginning of file
     fseek(file, 0L, SEEK_SET);
@@ -179,7 +179,7 @@ int segmentAndSend(char* mainBuffer){
 
           recvfrom(sockfd, voidPacket, 128, 0, (struct sockaddr*)&serverAddr, &addr_size);
           if (voidPacket[1] == '1') {
-              printf("[+]Data Received: \n");
+              printf("[+]Data Received (first 48 characters): \n");
               for (int i = 3; i < 48; i++) {
                   printf("%c", voidPacket[i]);
               }
@@ -200,7 +200,7 @@ int segmentAndSend(char* mainBuffer){
     printf("\n\nPackets Sent: %d", numPackets);
     char* finalAck = (char*)malloc(PACKET_SIZE);
     recvfrom(sockfd, finalAck, 128, 0, (struct sockaddr*)&serverAddr, &addr_size);
-    printf("%s", finalAck);
+    printf("\n %s", finalAck);
     return 0;
 }
 

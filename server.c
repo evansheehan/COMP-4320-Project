@@ -35,6 +35,7 @@ int main(void) {
 
   char seqNumExpected = '0';
   int packetsReceived = 0;
+  int finished = 0;
 
   FILE* file  = fopen("outputFile.txt",  "w+");
 
@@ -43,18 +44,11 @@ int main(void) {
     recvfrom(sockfd, buffer, 128, 0, (struct sockaddr*)& si_other, &addr_size);
 
     
-    printf("First 48 bytes of current packet:\n");
-    printf("Checksum:%d\n", (unsigned int)(unsigned char)buffer[0]);
-    printf("ACK:%c\n", buffer[1]);
-    printf("Sequence #:%c\n", buffer[2]);
-    for (int i = 3; i < 48; i++) {
-         printf("%c", buffer[i]);
-    }
-    printf("\n\n");
+   
     
     char checksumVal = calculateChecksum(buffer, 128);
     if (checksumVal == buffer[0] && seqNumExpected == buffer[2]) {
-        printf("Checksum for packet matches! Sending back ACK");
+        printf("Checksum for packet matches! Sending back ACK\n");
         buffer[1] = '1';
         for (int i = 3; i < 128; i++) {
            fprintf(file, "%c", buffer[i]);          
@@ -63,16 +57,26 @@ int main(void) {
         if (seqNumExpected == '1') seqNumExpected = '0';
         else seqNumExpected = '1';
         packetsReceived++;
+        if (buffer[127] == '\0') finished = 1;
     }
     else {
-        printf("\nChecksum for packet does not match, sending NCK");
+        printf("\nChecksum for packet does not match, sending NCK\n");
     }
-    
+    printf("First 48 bytes of current packet:\n");
+       for (int i = 3; i < 48; i++) {
+         printf("%c", buffer[i]);
+    }
+    printf("\nChecksum:%d\n", (unsigned int)(unsigned char)buffer[0]);
+    printf("ACK:%c\n", buffer[1]);
+    printf("Sequence #:%c\n", buffer[2]);
+  
+    printf("\n\n");
     sendto(sockfd, buffer, 128, 0, (struct sockaddr*)& si_other, sizeof(si_other));
-    if (buffer[127] == '\0') break;
+    if (finished == 1) break;
+    
   }
-  char* finalAck = "PUT Operation Successful";
-  printf("\n\n Packets Received: %d", packetsReceived);
+  char* finalAck = "PUT Operation Successful\n";
+  printf("\n\n Packets Received: %d\n", packetsReceived);
   sendto(sockfd, finalAck, 128, 0, (struct sockaddr*)& si_other, sizeof(si_other));
 
 

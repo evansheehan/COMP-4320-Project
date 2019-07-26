@@ -1,0 +1,1947 @@
+Script started on Thu Jul 25 21:32:38 2019
+[?1034hbash-3.2$ ./server
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+This is a test messae!!
+
+Lorem ipsum dolor s
+Checksum:21
+ACK:0
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+This is a test message!!
+
+Lorem ipsum dolor s
+Checksum:21
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+turpis tortor, facilisis maximus orci interdu
+Checksum:214
+ACK:0
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+turpis tortor, facilisis maximus orci interdu
+Checksum:214
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ante ipsum primis in faucibus. Fusce ullamcor
+Checksum:91
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+piscing elit. Ut eu enim in elit pellentesque
+Checksum:213
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+consequat mattis id pellentesque eros. Mauris
+Checksum:238
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ed dolor auctor ultricies. Etiam mattis imper
+Checksum:119
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+in pretium. Phasellus rhoncus, orci quis eges
+Checksum:125
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+sl. Sed tristique ipsum non lorem placerat au
+Checksum:13
+ACK:0
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+sl. Sed tristique ipsum non lorem placerat au
+Checksum:13
+ACK:0
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+sl. Sed tristique ipsum non lorem placerat au
+Checksum:13
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ittis lectus id sem efficitur, vitae vulputat
+Checksum:194
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+uris. Sed non odio elit. In molestie auctor a
+Checksum:139
+ACK:1
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+sus sodales quis. Vestibulum»placerat neque n
+Checksum:154
+ACK:0
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+sus sodales quis. Vestibulum placerat neque n
+Checksum:154
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+lentesque lectus sapien, interdum non hendrer
+Checksum:171
+ACK:1
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+enenatis tortor, et lobortis elit neque ut ur
+Checksum:12
+ACK:0
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+enenatis tortor, et lobortis elit neque ut ur
+Checksum:12
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+a pulvinar sit amet, ultricies in massa. Susp
+Checksum:3
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+, felis et imperdiet vehicula, urna dui porta
+Checksum:158
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+posuere et, rhoncus vel nunc. Class aptent ta
+Checksum:187
+ACK:1
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+ec pharetra tempus imperdiet. Proin vel sagit
+Checksum:195
+ACK:0
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ec pharetra tempus imperdiet. Proin vel sagit
+Checksum:195
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ng elit. Nulla lacinia arcu in sollicitudin a
+Checksum:110
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ ornare, eleifend magna egestas, tristique er
+Checksum:243
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+culus mus. Orci varius natoque penatibus et m
+Checksum:222
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+icitudin dictum id ut sem. Duis eu lacus quis
+Checksum:215
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+im magna. Etiam sed tortor sit amet eros port
+Checksum:177
+ACK:1
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+ibus mi scelerisque. Curabitur ut rutrum veli
+Checksum:188
+ACK:0
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+ibus mi]scelerisque. Curabitur ut rutrum veli
+Checksum:188
+ACK:0
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+ibus mi scålerisque. Curabitur ut rutrum veli
+Checksum:188
+ACK:0
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+ib¥s mi scelerisque. Curabitur ut rutrum veli
+Checksum:188
+ACK:0
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+ibus mi scelerisque. Curabitur ut ruþrum veli
+Checksum:188
+ACK:0
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ibus mi scelerisque. Curabitur ut rutrum veli
+Checksum:188
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+s ipsum in, porttitor odio. Maecenas laoreet 
+Checksum:250
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ augue tincidunt lorem, ac interdum metus est
+Checksum:227
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+tur ridiculus mus.
+
+Integer ut erat augue. Fu
+Checksum:95
+ACK:0
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+tur ridiculus mus.
+
+Integer ut erat augue. Fu
+Checksum:95
+ACK:0
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+tur ridiculus mus.
+
+Integer ut erat augue. Fu
+Checksum:95
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ero ut porta. Nulla facilisi. Aenean mollis v
+Checksum:3
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+a torquent per conubia nostra, per inceptos h
+Checksum:181
+ACK:1
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+t nulla aliquam, quis malesuada felis tincidu
+Checksum:226
+ACK:0
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+t nulla aliquam, quis malesuada felis tincidu
+Checksum:226
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+i. Vestibulum fermentum ultricies nunc non pu
+Checksum:114
+ACK:1
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+m nulla. Vestibulum finibus nulla lorem, vel 
+Checksum:81
+ACK:0
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+m nulla. Vestibulum finibus nulla lorem, vel 
+Checksum:81
+ACK:0
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+m nulla. Vestibulum finibus nulla lorem, vel 
+Checksum:81
+ACK:0
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+m nulla. Vestibulum finibus nulla lorem, vel 
+Checksum:81
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+t condimentum. Mauris tempus tortor eu est po
+Checksum:141
+ACK:1
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+imperdiet faucibus. Nunc pharetra, ex et male
+Checksum:5
+ACK:0
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+imperdiet faucibus. Nunc pharetra, ex et male
+Checksum:5
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+Morbi nec arcu elit. Quisque ut interdum dui.
+Checksum:97
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+esque laoreet. Suspendisse a metus nec turpis
+Checksum:248
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+teger at ex nec nulla phäretra ultrices. Vest
+Checksum:65
+ACK:0
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+teger at ex nec nulla phaÝetra ultrices. Vest
+Checksum:65
+ACK:0
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+teger at ex nec nulla pharetra ultrices. Vest
+Checksum:65
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+lla blandit interdum. Nam pulvinar mollis nib
+Checksum:60
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+. Ut turpis ipsum, fermentum vulputate nisi v
+Checksum:31
+ACK:1
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+facilisis dolor tortor, et ultricie» turpis t
+Checksum:62
+ACK:0
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+facilisis dolor tortor, et ultricies turpis t
+Checksum:62
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+c placerat vulputate, enim lectus tincidunt m
+Checksum:15
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ volutpat posuere urna. Vivamus condimentum, 
+Checksum:34
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+hendrerit orci. Cras bibendum ipsum in nunc u
+Checksum:223
+ACK:0
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+hendrerit or¯i. Cras bibendum ipsum in nunc u
+Checksum:223
+ACK:0
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+hendrerit orci. Cras bibendum ipsum in nunc u
+Checksum:223
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+rci. Cras sit amet feugiat mauris. Curabitur 
+Checksum:198
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+nean quis augue fermentum, pretium mauris a, 
+Checksum:12
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+viverra eros vel nisi dignissim elementum. Cu
+Checksum:177
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ero sed, varius nisl. Nulla facilisi. Quisque
+Checksum:171
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+onsequat eleifend, tellus sapien rhoncus erat
+Checksum:90
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+es imperdiet lectus. Donec ut enim tincidunt,
+Checksum:52
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ue non tellus vel nunc tempor elementum vel n
+Checksum:52
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+ sit amet sem in ðem ultricies egestas eu at 
+Checksum:100
+ACK:0
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ sit amet sem in sem ultricies egestas eu at 
+Checksum:100
+ACK:1
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+t mi vel, ullamcorper dignissim dolor. Nam a 
+Checksum:126
+ACK:0
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+t mi vel, ullamcorper dignissim dolor. Nam a 
+Checksum:126
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+cidunt.
+
+Nullam hendrerit ac ex sit amet tris
+Checksum:60
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+lor, vel ultricies dui. Sed at eros vitae arc
+Checksum:144
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+st vitae rutrum sagittis, dui risus vulputate
+Checksum:120
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ius ornare, sapien eros sollicitudin ipsum, a
+Checksum:127
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+, vel feugiat justo egestas ac.
+
+Suspendisse 
+Checksum:45
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+t amet venenatis dolor. Phasellus tristique, 
+Checksum:206
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+dolor. Sed id semper lacus, ut lacinia est. N
+Checksum:76
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+. Mauris pretium interdum vulputate. Lorem ip
+Checksum:86
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ bibendum, eros quis lobortis mollis, nibh ex
+Checksum:27
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+sed quam vitae, porta pellentesque augue. Pel
+Checksum:193
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+mus lacus quis velit posuere dictum. In aliqu
+Checksum:182
+ACK:1
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+cumsan. SedYrutrum vitae eros eget pulvinar. 
+Checksum:191
+ACK:0
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+cumsan. Sed rutrum vitae eros eget pulvinar. 
+Checksum:191
+ACK:0
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+cumsan. Sed rutrum vitae eros eget pulvinar. 
+Checksum:191
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+condimentum eu nisl a iaculis.
+
+AliPuam moles
+Checksum:15
+ACK:¡
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+condimentum eu nisl a iaculis.
+
+Aliquam moles
+Checksum:15
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+enim eget orci semper faucibus. Vestibulum a 
+Checksum:105
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+, at porta libero. In sit amet mauris eu augu
+Checksum:247
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+acus. Nulla facilisi. Vivamus ac egestas ipsu
+Checksum:147
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+n a elit vitae señper. Aenean congue felis eu
+Checksum:246
+ACK:0
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+n a elit vitae semper. Aenean congue felis eu
+Checksum:246
+ACK:1
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+ean in scelerisque tellus. Sed lucãus lorem m
+Checksum:239
+ACK:0
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ean in scelerisque tellus. Sed luctus lorem m
+Checksum:239
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ velit eleifend in. Vivamus quis semper liber
+Checksum:53
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ula venenatis ipsum aliquet condimentum. Duis
+Checksum:2
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ facilisis, velit viverra pulvinar mollis, ni
+Checksum:1
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ lacus et dui finibus luctus. Sed fringilla, 
+Checksum:91
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+acus ac ex. Sed dapibus, lorem id congue susc
+Checksum:25
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+eugiat ac varius id, porttitor non libero. Ma
+Checksum:20
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+h laâinia faucibus id sed dolor. Sed ultricie
+Checksum:14
+ACK:0
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+h lacinia faucibus id sed dolor. Sed ultricie
+Checksum:14
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+sollicitudin. Vestibulum vel erat sit amet er
+Checksum:11
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+lentesque urna molestie eget.
+
+Vestibulum pla
+Checksum:252
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+tricies dapibus, varius fermentum turpis. Ves
+Checksum:211
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+l. In id leo ante. Pellentesque habitant morb
+Checksum:89
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+id lorem sem.
+
+Duis egestas magna risus. Ut a
+Checksum:80
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+tudin vel tortor vel, sodales ullamcorper neq
+Checksum:103
+ACK:1
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+t posuere molestie. Morbi fermentum, enim vel
+Checksum:9
+ACK:0
+Sequence #:
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+t posuere molestie. Morbi fermentum, enim vel
+Checksum:9
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+is. Aenean vulputate quam a varius convallis.
+Checksum:159
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+icitudin consequat quam id consequat. Proin v
+Checksum:29
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+itur vitae, malesuada malesuada velit. Quisqu
+Checksum:49
+ACK:0
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+itur vitae, malesuada malesuada velit. Quisqu
+Checksum:49
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+nunc. Duis maximus tempus nunc, ac tristique 
+Checksum:182
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+ingilla lobortis. Etiam dignissim–enim euismo
+Checksum:25
+ACK:0
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ingilla lobortis. Etiam dignissim enim euismo
+Checksum:25
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+. Donec condimentum enim augue, a aliquet est
+Checksum:250
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+e vitµe. Nunc ac luctus massa, eget eleifend 
+Checksum:124
+ACK:
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+e vitae. NuncAac luctus massa, eget eleifend 
+Checksum:124
+ACK:Ì
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+e vitae. Nunc ac luctus massa, eget eleifend 
+Checksum:124
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+l ullamcorper ipsum dui sed lacus. Donec laci
+Checksum:66
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+ibus magna magna, at molestie leo conÀequat s
+Checksum:237
+ACK:0
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ibus magna magna, at molestie leo consequat s
+Checksum:237
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ut purus non posuere. Nulla nec molestie lect
+Checksum:250
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+es ac ante ipsum primis in faucibus. Vestibul
+Checksum:153
+ACK:1
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+Vestibulum eros mauris, dapibus non3tortor in
+Checksum:35
+ACK:0
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+Vestibulum eros mauris, dapibus non tortor in
+Checksum:35
+ACK:0
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+Vestibulum eros mauris, dapibus non tortor in
+Checksum:35
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+san aliquam, ante diam placerat mauris, vel e
+Checksum:131
+ACK:1
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+lutpat consequat congue. Sûd a consequat tort
+Checksum:194
+ACK:0
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+lutpat consequat congue. Sed a cônsequat tort
+Checksum:194
+ACK:0
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+lutpat consequat congue. Sed a consequat tort
+Checksum:194
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+rerit lorem imperdiet, tincidunt diam. Ut neq
+Checksum:61
+ACK:0
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+rerit lorem imperdiet, tincidunt diam. Ut neq
+Checksum:61
+ACK:0
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+rerit lorem imperdiet, tincdunt diam. Ut neq
+Checksum:61
+ACK:0
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+rerit lorem imperdiet, tincidunt diam. Ut neq
+Checksum:61
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+s. Vestibulum quis viverra dolor, vitae tempu
+Checksum:228
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ec metus nec erat cursus sollicitudin. Pellen
+Checksum:202
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+am sollicitudin mattis vitae non lacus. Suspe
+Checksum:114
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+sapien tristique id.
+
+In tristique lorem risu
+Checksum:220
+ACK:0
+Sequence #:É
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+sapien tristique id.
+
+In tristique lorem risu
+Checksum:220
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+que. Ut tellus lorem, fringilla in ullamcorpe
+Checksum:129
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+In luctus purus dolor, id lobortis est egesta
+Checksum:57
+ACK:1
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+icula, urna ut feugiat lobortis, felis elitŸc
+Checksum:101
+ACK:0
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+icula, urna ut feugiat lobortis, felis elit c
+Checksum:101
+ACK:0
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+icula, urna ut feugiat lobortis, felis elit c
+Checksum:101
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+ nec eros nisl. Curabitur id metus pharetra, 
+Checksum:224
+ACK:0
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ nec eros nisl. Curabitur id metus pharetra, 
+Checksum:224
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+s lacinia quam posuere, imperdiet justo ut, t
+Checksum:142
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+, sit amet pharetra ipsum. Nam vel purus ultr
+Checksum:235
+ACK:0
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+, sit amet pharetra ipsum. Nam vel purus ultr
+Checksum:235
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+condimentum mi. Cras fermentum sapien at est 
+Checksum:202
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+sce egestas molestie porttitor. Proin interdu
+Checksum:219
+ACK:0
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+sce egestas molestie porttitor. Proin interdu
+Checksum:219
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+tis massa, a sollicitudin erat facilisis eu. 
+Checksum:226
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+os, malesuada et lacus at, maximus tempus arc
+Checksum:53
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ In vehicula, urna at tincidunt hendrerit, li
+Checksum:219
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+o, et commodo turpis facilisis ut. Maecenas o
+Checksum:15
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+oncus, commodo vestibulum dolor fermentum. Vi
+Checksum:180
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+us interdum ante lobortis ornar7 sit amet et 
+Checksum:66
+ACK:0
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+us interdum ante lobortis ornare sit amet et 
+Checksum:66
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+m vel facilisis urna, quis posuere diam. Maur
+Checksum:239
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ congue nulla, vitae porta nulla augue id sap
+Checksum:58
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+eu commodo justo, nec condimentum risus. Fusc
+Checksum:216
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+cumsan. Etiam in dictum mauris. Phasellus ali
+Checksum:26
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+, bibendum eu dictum id, gravida eget risus. 
+Checksum:128
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ justo eu purus. Pellentesque luctus hendreri
+Checksum:236
+ACK:1
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+latea dictumst. Sed suscipit nec velit vitae 
+Checksum:72
+ACK:0
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+latea dictumst. Sed suscipit nec velit vitae 
+Checksum:72
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+em, quis ornare nibh dapibus sit amet. Nulla 
+Checksum:80
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+l vel sapien finibus varius. Integer in dapib
+Checksum:248
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+uis augue ligula.
+
+Nulla ante massa, tristiqu
+Checksum:76
+ACK:1
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+mpus dui id metus egestas rhoncus sit amet eu
+Checksum:98
+ACK:0
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+mpus dui id metus egestas rhoncus sit amet eu
+Checksum:98
+ACK:0
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+mpus dui id metus egestas rhoncus sit amet eu
+Checksum:98
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+lobortis. Aenean sit amet fermentum lorem, et
+Checksum:127
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ lorem, at gravida nisi congue vitae. Cras et
+Checksum:114
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+piscing elit. Aenean vel euismod quam, nec di
+Checksum:170
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ut tellus sem. Sed posuere, lorem at auctor a
+Checksum:6
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+onec nunc turpis, sollicitudin eget fringilla
+Checksum:236
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+sl sem, sodales et suscipit vel, varius sit a
+Checksum:242
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+que finibus tempor scelerisque. Vestibulum si
+Checksum:11
+ACK:0
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+que finibus tempor scelerisque. Vestibulum si
+Checksum:11
+ACK:0
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+que finibus tempor scelerisque. Vestibulum si
+Checksum:11
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+, elementum dapibus nibh. Suspendisse non por
+Checksum:93
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+apibus eleifend velit. Duis nec augue leo. Mo
+Checksum:41
+ACK:0
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+apibus eleifend velit. Duis nec augue leo. Mo
+Checksum:41
+ACK:0
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+apibus eleifend velit. Duis nec augue leo. Mo
+Checksum:41
+ACK:1
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+ilisis urna eu, consectetur metus. Praesent a
+Checksum:251
+ACK:0
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ilisis urna eu, consectetur metus. Praesent a
+Checksum:251
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+nvallis ac eu sem. Duis mattis consectetur du
+Checksum:235
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ultrices sapien sit amet porta. Morbi at effi
+Checksum:243
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+. Sed ultricies facilisis commodo.
+
+Proin nun
+Checksum:130
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+d vestibulum. Sed sed tempor turpis, eget bla
+Checksum:168
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+vida auctor ex molestie vitae. Nulla a nisi s
+Checksum:9
+ACK:0
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+vida auctor ex molestie vitae. Nulla a nisi s
+Checksum:9
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+attis mi, quis venenatis turpis. Donec dictum
+Checksum:171
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ a elementum velit dictum ullamcorper. Maecen
+Checksum:188
+ACK:1
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+nt ut, laoreet maximus enim. Curabitur ut nul
+Checksum:63
+ACK:0
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+nt ut, laoreet maximus enim. Curabitur ut nul
+Checksum:63
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ehicula. Nunc sed neque fringilla, accumsan v
+Checksum:230
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+citur et. Fusce orci elit, dictum quis sollic
+Checksum:98
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ et ultrices posuere cubilia Curae; Nullam ve
+Checksum:113
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+iam suscipit in libero ornare rhoncus. Duis e
+Checksum:145
+ACK:1
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+Aenean varius sed nulla in dapibus. Morbi lig
+Checksum:69
+ACK:0
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+Aenean varius sed nulla in dapibus. Morbi lig
+Checksum:69
+ACK:0
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+Aenean varius sed nulla in dapibus. Morbi lig
+Checksum:69
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+cursus est, eu aliquet eros sagittis eget. Se
+Checksum:162
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ra pharetra auctor. Aliquam erat volutpat. Cr
+Checksum:107
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ mi lacus vitae lorem. Maecenas nec orci ut l
+Checksum:61
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+ellus hendrerit turpis id enim elementum, a p
+Checksum:146
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+que quis neque viverra faucibus vitae eu metu
+Checksum:218
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+o rhoncus consectetur eu quis odio. Etiam vit
+Checksum:87
+ACK:1
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+lesuada fames ac turpis egestas. Pellentesque
+Checksum:230
+ACK:0
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+lesuada fames ac turpis egestas. Pellentesque
+Checksum:230
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+itur vel volutpat justo. Aenean eget aliquam 
+Checksum:200
+ACK:1
+Sequence #:1
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+
+
+Sed sed enim tristique, hendrerit odio nec,
+Checksum:96
+ACK:0
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+
+
+Sed sed enim tristique, hendrerit odio nec,
+Checksum:96
+ACK:0
+Sequence #:0
+
+
+
+Checksum for packet does not match, sending NCK
+First 48 bytes of current packet:
+
+
+Sed sed enim tristique, hendrerit odio nec,
+Checksum:96
+ACK:0
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+
+
+Sed sed enim tristique, hendrerit odio nec,
+Checksum:96
+ACK:1
+Sequence #:0
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+atis, vulputate justo ac, porttitor lectus. P
+Checksum:7
+ACK:1
+Sequence #:1
+
+
+Checksum for packet matches! Sending back ACK
+First 48 bytes of current packet:
+nte iaculis laoreet. Nam a molestie elit. Sus
+Checksum:112
+ACK:1
+Sequence #:0
+
+
+
+
+ Packets Received: 161
+bash-3.2$ exit
+exit
+
+Script done on Thu Jul 25 21:36:18 2019
