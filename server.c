@@ -25,10 +25,12 @@ int main(void) {
 
   sockfd = socket(AF_INET, SOCK_DGRAM, 0);
 
-  memset(&si_me, '\0', sizeof(si_me));
+  memset(&si_me, 0, sizeof(si_me));
+  memset(&si_other, 0, sizeof(si_me));
+
   si_me.sin_family = AF_INET;
-  si_me.sin_port = htons(5566);
-  si_me.sin_addr.s_addr = inet_addr("127.0.0.1");
+  si_me.sin_port = htons(10005);
+  si_me.sin_addr.s_addr = INADDR_ANY;
 
   bind(sockfd, (struct sockaddr*)&si_me, sizeof(si_me));
   addr_size = sizeof(si_other);
